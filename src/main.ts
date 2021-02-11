@@ -36,7 +36,7 @@ async function run(): Promise<void> {
 
     await exec(
       'terraform',
-      ['plan', '--no-color', '-input=false', terraformArgs],
+      ['plan', '-no-color', '-input=false', terraformArgs],
       options
     );
 
