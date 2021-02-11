@@ -41,7 +41,10 @@ const github = __importStar(__webpack_require__(5438));
 function createStatusCheck(accessToken, title, results) {
     return __awaiter(this, void 0, void 0, function* () {
         const octokit = github.getOctokit(accessToken);
-        const summary = `Terraform plan completed with exit code ${results.exitCode}`;
+        const planSummary = getPlanSummary(results.output);
+        const summary = `Terraform plan completed with exit code ${results.exitCode}. 
+  ${planSummary}
+  `;
         let details = `# Terraform Plan
 \`\`\`
     ${results.output}
@@ -73,6 +76,19 @@ function createStatusCheck(accessToken, title, results) {
     });
 }
 exports.createStatusCheck = createStatusCheck;
+function getPlanSummary(output) {
+    const planLineStart = output.indexOf('Plan:');
+    if (planLineStart > 0) {
+        const endOfPlanLine = output.indexOf('\n', planLineStart);
+        if (endOfPlanLine > 0) {
+            return output.substr(planLineStart, endOfPlanLine - planLineStart);
+        }
+        else {
+            return output.substr(planLineStart);
+        }
+    }
+    return '';
+}
 
 
 /***/ }),

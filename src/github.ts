@@ -8,7 +8,10 @@ export async function createStatusCheck(
 ): Promise<void> {
   const octokit = github.getOctokit(accessToken);
 
-  const summary = `Terraform plan completed with exit code ${results.exitCode}`;
+  const planSummary = getPlanSummary(results.output);
+  const summary = `Terraform plan completed with exit code ${results.exitCode}. 
+  ${planSummary}
+  `;
 
   let details = `# Terraform Plan
 \`\`\`
@@ -40,4 +43,17 @@ export async function createStatusCheck(
       text: details,
     },
   });
+}
+
+function getPlanSummary(output: string): string {
+  const planLineStart = output.indexOf('Plan:');
+  if (planLineStart > 0) {
+    const endOfPlanLine = output.indexOf('\n', planLineStart);
+    if (endOfPlanLine > 0) {
+      return output.substr(planLineStart, endOfPlanLine - planLineStart);
+    } else {
+      return output.substr(planLineStart);
+    }
+  }
+  return '';
 }
