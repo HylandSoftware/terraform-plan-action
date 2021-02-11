@@ -47,8 +47,7 @@ function createStatusCheck(accessToken, title, results) {
 ${results.output}
 \`\`\``;
         if (results.error.length > 0) {
-            details =
-                `${details}
+            details = `${details}
 
 #Terraform Error
 \`\`\`
@@ -67,7 +66,7 @@ ${results.error}
             output: {
                 title,
                 summary,
-                annotations: null,
+                annotations: [],
                 text: details,
             },
         });

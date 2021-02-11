@@ -36,7 +36,7 @@ ${results.error}
     output: {
       title,
       summary,
-      annotations: null,
+      annotations: [],
       text: details,
     },
   });
