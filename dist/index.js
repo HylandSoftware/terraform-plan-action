@@ -43,28 +43,16 @@ function createStatusCheck(accessToken, title, results) {
         const octokit = github.getOctokit(accessToken);
         const summary = `Terraform plan completed with exit code ${results.exitCode}`;
         let details = `# Terraform Plan
-<details>
-    <summary>Click to expand!</summary>
-
-    \`\`\`
-        ${results.output}
-    \`\`\`
-
-</details>
-`;
+\`\`\`
+    ${results.output}
+\`\`\``;
         if (results.error.length > 0) {
             details = `${details}
 
 # Terraform Error
-<details>
-    <summary>Click to expand!</summary>
-
-    \`\`\`
-        ${results.error}
-    \`\`\`
-
-</details>
-`;
+\`\`\`
+    ${results.error}
+\`\`\``;
         }
         const context = github.context;
         const pr = context.payload.pull_request;
