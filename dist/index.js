@@ -44,10 +44,12 @@ function createStatusCheck(accessToken, title, results) {
         const summary = `Terraform plan completed with exit code ${results.exitCode}`;
         let details = `# Terraform Plan
 <details>
-<summary>Click to expand!</summary>
-\`\`\`
-${results.output}
-\`\`\`
+    <summary>Click to expand!</summary>
+
+    \`\`\`
+    ${results.output}
+    \`\`\`
+
 </details>
 `;
         if (results.error.length > 0) {
@@ -55,10 +57,12 @@ ${results.output}
 
 # Terraform Error
 <details>
-<summary>Click to expand!</summary>
-\`\`\`
-${results.error}
-\`\`\`
+    <summary>Click to expand!</summary>
+
+    \`\`\`
+    ${results.error}
+    \`\`\`
+
 </details>
 `;
         }

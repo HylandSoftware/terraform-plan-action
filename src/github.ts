@@ -12,10 +12,12 @@ export async function createStatusCheck(
 
   let details = `# Terraform Plan
 <details>
-<summary>Click to expand!</summary>
-\`\`\`
-${results.output}
-\`\`\`
+    <summary>Click to expand!</summary>
+
+    \`\`\`
+    ${results.output}
+    \`\`\`
+
 </details>
 `;
 
@@ -24,10 +26,12 @@ ${results.output}
 
 # Terraform Error
 <details>
-<summary>Click to expand!</summary>
-\`\`\`
-${results.error}
-\`\`\`
+    <summary>Click to expand!</summary>
+
+    \`\`\`
+    ${results.error}
+    \`\`\`
+
 </details>
 `;
   }
