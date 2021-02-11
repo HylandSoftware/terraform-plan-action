@@ -47,7 +47,7 @@ function createStatusCheck(accessToken, title, results) {
     <summary>Click to expand!</summary>
 
     \`\`\`
-    ${results.output}
+        ${results.output}
     \`\`\`
 
 </details>
@@ -60,7 +60,7 @@ function createStatusCheck(accessToken, title, results) {
     <summary>Click to expand!</summary>
 
     \`\`\`
-    ${results.error}
+        ${results.error}
     \`\`\`
 
 </details>

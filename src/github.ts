@@ -15,7 +15,7 @@ export async function createStatusCheck(
     <summary>Click to expand!</summary>
 
     \`\`\`
-    ${results.output}
+        ${results.output}
     \`\`\`
 
 </details>
@@ -29,7 +29,7 @@ export async function createStatusCheck(
     <summary>Click to expand!</summary>
 
     \`\`\`
-    ${results.error}
+        ${results.error}
     \`\`\`
 
 </details>
