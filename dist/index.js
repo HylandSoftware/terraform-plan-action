@@ -45,17 +45,18 @@ function run() {
             //const githubToken: string = core.getInput('token');
             const workingDirectory = core.getInput('working-directory');
             const debug = (core.getInput('debug', { required: false }) || 'false') === 'true';
-            let stdOut = '';
-            let stdErr = '';
+            const stdOut = [];
+            const stdErr = [];
             const options = {};
             options.listeners = {
                 stdout: (data) => {
-                    stdOut += data.toString();
+                    stdOut.push(data);
                 },
                 stderr: (data) => {
-                    stdErr += data.toString();
+                    stdErr.push(data);
                 },
             };
+            options.ignoreReturnCode = true;
             options.cwd = workingDirectory;
             // don't escape the args cause
             options.windowsVerbatimArguments = true;
@@ -68,19 +69,26 @@ function run() {
                 }
             }
             core.debug(`Starting terraform plan at ${new Date().toTimeString()}`);
-            yield exec_1.exec('terraform', ['plan', '-no-color', '-input=false', terraformArgs], options);
+            const exitCode = yield exec_1.exec('terraform', ['plan', '-no-color', '-input=false', terraformArgs], options);
             core.debug(`Terraform plan completed at ${new Date().toTimeString()}`);
+            core.debug(`exitcode: ${exitCode}`);
             core.debug(' ------ Standard Out from Plan -----');
-            core.debug(stdOut);
+            core.debug(writeBufferToString(stdOut));
             core.debug(' ------ Standard Out from Plan -----');
             core.debug(' ------ Standard Error from Plan -----');
-            core.debug(stdErr);
+            core.debug(writeBufferToString(stdErr));
             core.debug(' ------ Standard Error from Plan -----');
+            if (exitCode !== 0) {
+                core.setFailed(`Terraform exited with code ${exitCode}.`);
+            }
         }
         catch (error) {
             core.setFailed(error.message);
         }
     });
+}
+function writeBufferToString(data) {
+    return data.map((buffer) => buffer.toString()).join('');
 }
 run();
 
