@@ -10,7 +10,8 @@ export async function createStatusCheck(
 
   const planSummary = getPlanSummary(results.output);
   const summary = `Terraform plan completed with exit code ${results.exitCode}. 
-  ${planSummary}
+  
+  ## ${planSummary}
   `;
 
   let details = `# Terraform Plan

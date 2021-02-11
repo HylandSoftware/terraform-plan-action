@@ -43,7 +43,8 @@ function createStatusCheck(accessToken, title, results) {
         const octokit = github.getOctokit(accessToken);
         const planSummary = getPlanSummary(results.output);
         const summary = `Terraform plan completed with exit code ${results.exitCode}. 
-  ${planSummary}
+  
+  ## ${planSummary}
   `;
         let details = `# Terraform Plan
 \`\`\`
