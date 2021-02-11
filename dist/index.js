@@ -120,7 +120,7 @@ function run() {
         try {
             const terraformArgs = core.getInput('args');
             const githubToken = core.getInput('token');
-            const title = core.getInput('title');
+            const reportTitle = core.getInput('reportTitle');
             const workingDirectory = core.getInput('working-directory');
             const debug = (core.getInput('debug', { required: false }) || 'false') === 'true';
             const continueOnError = (core.getInput('continue-on-error', { required: false }) || 'false') ===
@@ -160,7 +160,7 @@ function run() {
             core.debug(' ------ Standard Error from Plan -----');
             core.debug(error);
             core.debug(' ------ Standard Error from Plan -----');
-            github_1.createStatusCheck(githubToken, title, new terraform_results_1.TerraformResults(output, error, exitCode));
+            github_1.createStatusCheck(githubToken, reportTitle, new terraform_results_1.TerraformResults(output, error, exitCode));
             if (continueOnError === false && exitCode !== 0) {
                 core.setFailed(`Terraform exited with code ${exitCode}.`);
             }
