@@ -28,12 +28,12 @@ jobs:
 
       - name: Terraform Init
         id: init
-        workingDirectory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
+        working-directory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
         run: terraform init
 
       - uses: ./
         with:
           args: -var-file=./vars/vars.tfvars
           token: ${{ secrets.GITHUB_TOKEN }}
-          workingDirectory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
+          working-directory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
           

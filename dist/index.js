@@ -43,7 +43,7 @@ function run() {
         try {
             const terraformArgs = core.getInput('args');
             //const githubToken: string = core.getInput('token');
-            const workingDirectory = core.getInput('workingDirectory');
+            const workingDirectory = core.getInput('working-directory');
             const debug = (core.getInput('debug', { required: false }) || 'false') === 'true';
             let stdOut = '';
             let stdErr = '';

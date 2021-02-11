@@ -8,7 +8,7 @@ inputs:
   token:
     required: true
     description: 'The github token to use to post back to the checks endpoint.'
-  workingDirectory:
+  working-directory:
     required: true
     description: 'The path to the terraform working directory.  This is the path to your terraform code, not to the terraform binary.'
   debug:
