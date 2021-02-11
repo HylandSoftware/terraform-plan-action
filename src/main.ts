@@ -34,7 +34,11 @@ async function run(): Promise<void> {
 
     core.debug(`Starting terraform plan at ${new Date().toTimeString()}`);
 
-    await exec('terraform', ['plan', '--no-color', terraformArgs], options);
+    await exec(
+      'terraform',
+      ['plan', '--no-color', '-input=false', terraformArgs],
+      options
+    );
 
     core.debug(`Terraform plan completed at ${new Date().toTimeString()}`);
     core.debug(' ------ Standard Out from Plan -----');

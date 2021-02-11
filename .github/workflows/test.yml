@@ -25,7 +25,10 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
-
+        with:
+          terraform_version: 0.13
+          terraform_wrapper: false
+          
       - name: Terraform Init
         id: init
         working-directory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}

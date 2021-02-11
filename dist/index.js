@@ -68,7 +68,7 @@ function run() {
                 }
             }
             core.debug(`Starting terraform plan at ${new Date().toTimeString()}`);
-            yield exec_1.exec('terraform', ['plan', '--no-color', terraformArgs], options);
+            yield exec_1.exec('terraform', ['plan', '--no-color', '-input=false', terraformArgs], options);
             core.debug(`Terraform plan completed at ${new Date().toTimeString()}`);
             core.debug(' ------ Standard Out from Plan -----');
             core.debug(stdOut);
