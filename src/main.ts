@@ -7,6 +7,7 @@ async function run(): Promise<void> {
   try {
     const terraformArgs: string = core.getInput('args');
     const githubToken: string = core.getInput('token');
+    const title: string = core.getInput('title');
     const workingDirectory: string = core.getInput('working-directory');
     const debug: boolean =
       (core.getInput('debug', { required: false }) || 'false') === 'true';
@@ -60,7 +61,7 @@ async function run(): Promise<void> {
 
     createStatusCheck(
       githubToken,
-      'Terraform plan results',
+      title,
       new TerraformResults(output, error, exitCode)
     );
 
