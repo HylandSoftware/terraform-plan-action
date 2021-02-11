@@ -15,6 +15,10 @@ inputs:
     required: false
     description: 'If set to true, will set the TF_LOG environment variable to DEBUG on the terraform plan process to dump debug output.'
     default: false
+  continue-on-error:
+    required: false
+    description: 'Whether or not the action should set the failure status if the plan fails.  This will not affect the check being set witht he plan results.'
+    default: false
 runs:
   using: 'node12'
   main: 'dist/index.js'

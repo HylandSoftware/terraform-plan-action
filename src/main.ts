@@ -1,13 +1,18 @@
 import * as core from '@actions/core';
 import { exec, ExecOptions } from '@actions/exec';
+import { createStatusCheck } from './github';
+import { TerraformResults } from './terraform-results';
 
 async function run(): Promise<void> {
   try {
     const terraformArgs: string = core.getInput('args');
-    //const githubToken: string = core.getInput('token');
+    const githubToken: string = core.getInput('token');
     const workingDirectory: string = core.getInput('working-directory');
     const debug: boolean =
       (core.getInput('debug', { required: false }) || 'false') === 'true';
+    const continueOnError: boolean =
+      (core.getInput('continue-on-error', { required: false }) || 'false') ===
+      'true';
 
     const stdOut: Buffer[] = [];
     const stdErr: Buffer[] = [];
@@ -41,16 +46,25 @@ async function run(): Promise<void> {
       options
     );
 
+    const output = writeBufferToString(stdOut);
+    const error = writeBufferToString(stdErr);
+
     core.debug(`Terraform plan completed at ${new Date().toTimeString()}`);
-    core.debug(`exitcode: ${exitCode}`);
+    core.debug(`Exit Code: ${exitCode}`);
     core.debug(' ------ Standard Out from Plan -----');
-    core.debug(writeBufferToString(stdOut));
+    core.debug(output);
     core.debug(' ------ Standard Out from Plan -----');
     core.debug(' ------ Standard Error from Plan -----');
-    core.debug(writeBufferToString(stdErr));
+    core.debug(error);
     core.debug(' ------ Standard Error from Plan -----');
 
-    if (exitCode !== 0) {
+    createStatusCheck(
+      githubToken,
+      'Terraform plan results',
+      new TerraformResults(output, error, exitCode)
+    );
+
+    if (continueOnError === false && exitCode !== 0) {
       core.setFailed(`Terraform exited with code ${exitCode}.`);
     }
   } catch (error) {
