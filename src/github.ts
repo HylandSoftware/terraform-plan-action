@@ -10,25 +10,33 @@ export async function createStatusCheck(
 
   const summary = `Terraform plan completed with exit code ${results.exitCode}`;
 
-  let details = `#Terraform Plan
+  let details = `# Terraform Plan
+<details>
+<summary>Click to expand!</summary>
 \`\`\`
 ${results.output}
-\`\`\``;
+\`\`\`
+</details>
+`;
 
   if (results.error.length > 0) {
     details = `${details}
 
-#Terraform Error
+# Terraform Error
+<details>
+<summary>Click to expand!</summary>
 \`\`\`
 ${results.error}
-\`\`\``;
+\`\`\`
+</details>
+`;
   }
 
   const context = github.context;
   const pr = context.payload.pull_request;
   await octokit.checks.create({
     head_sha: (pr && pr['head'] && pr['head'].sha) || context.sha,
-    name: 'Tests Report',
+    name: 'Terraform Plan Report',
     owner: context.repo.owner,
     repo: context.repo.repo,
     status: 'completed',
