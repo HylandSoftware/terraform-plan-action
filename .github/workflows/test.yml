@@ -3,8 +3,8 @@ on: # rebuild any PRs and main branch changes
   pull_request:
   push:
     branches:
-      - main
-      - 'releases/*'
+      #- main
+      #- 'releases/*'
 env:
   TERRAFORM_WORKING_DIRECTORY: terraform
 
@@ -18,7 +18,8 @@ jobs:
       - run: |
           npm run all
           # Fail if "npm run build" generated new changes in dist
-          # git update-index --refresh dist/* && git diff-index --quiet HEAD dist
+          git diff
+          git update-index --refresh dist/* && git diff-index --quiet HEAD dist
 
   test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
