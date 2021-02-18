@@ -39,12 +39,14 @@ jobs:
           args: -var-file=./vars/vars.tfvars
           token: ${{ secrets.GITHUB_TOKEN }}
           working-directory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
+          report-title: Single Argument Run
 
       - uses: ./
         with:
           args: '["-lock=false", "-var-file=./vars/vars.tfvars"]'
           token: ${{ secrets.GITHUB_TOKEN }}
           working-directory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
+          report-title: Multiple Argument Run
           
   release:
     runs-on: ubuntu-latest
