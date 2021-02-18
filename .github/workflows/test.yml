@@ -40,7 +40,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           working-directory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
           report-title: Single Argument Run
-          
 
       - uses: ./
         with:

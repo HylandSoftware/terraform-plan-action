@@ -60,7 +60,7 @@ function getPlanSummary(output: string): string {
 }
 
 function findLine(wording: string, output: string): string {
-  const wordingIndex = output.indexOf('Plan:');
+  const wordingIndex = output.indexOf(wording);
   if (wordingIndex > 0) {
     const endOfLineIndex = output.indexOf('\n', wordingIndex);
     if (endOfLineIndex > 0) {
