@@ -34,7 +34,7 @@ export async function createStatusCheck(
 
   const context = github.context;
   const pr = context.payload.pull_request;
-  await octokit.checks.create({
+  await octokit.rest.checks.create({
     head_sha: (pr && pr['head'] && pr['head'].sha) || context.sha,
     name: title,
     owner: context.repo.owner,
