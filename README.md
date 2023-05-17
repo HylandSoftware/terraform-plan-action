@@ -1,6 +1,6 @@
 # Terraform Plan Action
 
-This action wraps `terraform plan` to allow the plan and plan status to be posted as a status check in a pull request.  This enhances the terraform examples that uses an inline action to post a comment to a PR.
+This action wraps `terraform plan` to allow the plan and plan status to be posted as a status check in a pull request.  This enhances the terraform examples that use an inline action to post a comment to a PR.
 
 The following arguments are automatically added to `terraform plan -no-color -input=false`.  `no-color` is added since coloring won't be preserved in the output.  `-input=false` is added to prevent the action from asking for input of a missing variable.  This can cause the pipeline to pause and continue to churn billable minutes while not proceeding.
 
