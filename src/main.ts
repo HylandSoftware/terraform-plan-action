@@ -78,7 +78,8 @@ async function run(): Promise<void> {
     }
   } catch (error) {
     if (error instanceof Error) {
-      core.setFailed(error.message);
+      //core.setFailed(error.message);
+      core.setFailed(`Action failed with error ${error.message}`);
     } else {
       core.setFailed(`Action failed with error ${error}`);
     }
