@@ -11,9 +11,8 @@ async function run(): Promise<void> {
     const githubToken: string = core.getInput('token');
     const reportTitle: string = core.getInput('report-title');
     const workingDirectory: string = core.getInput('working-directory');
-    // const debug: boolean =
-    //   (core.getInput('debug', { required: false }) || 'false') === 'true';
-    const debug: boolean = true;
+    const debug: boolean =
+      (core.getInput('debug', { required: false }) || 'false') === 'true';
     const continueOnError: boolean =
       (core.getInput('continue-on-error', { required: false }) || 'false') ===
       'true';

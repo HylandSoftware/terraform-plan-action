@@ -161,9 +161,7 @@ function run() {
             const githubToken = core.getInput('token');
             const reportTitle = core.getInput('report-title');
             const workingDirectory = core.getInput('working-directory');
-            // const debug: boolean =
-            //   (core.getInput('debug', { required: false }) || 'false') === 'true';
-            const debug = true;
+            const debug = (core.getInput('debug', { required: false }) || 'false') === 'true';
             const continueOnError = (core.getInput('continue-on-error', { required: false }) || 'false') ===
                 'true';
             const saveDirectory = core.getInput('save-directory');
