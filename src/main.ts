@@ -77,12 +77,11 @@ async function run(): Promise<void> {
       core.setFailed(`Terraform exited with code ${exitCode}.`);
     }
   } catch (error) {
-    console.log("bleh");
-    // if (error instanceof Error) {
-    //   core.setFailed(error.message);
-    // } else {
-    //   core.setFailed(`Action failed with error ${error}`);
-    // }
+    if (error instanceof Error) {
+      core.setFailed(error.message);
+    } else {
+      core.setFailed(`Action failed with error ${error}`);
+    }
   }
 }
 
