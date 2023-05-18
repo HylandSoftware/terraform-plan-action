@@ -1,6 +1,5 @@
 import * as core from '@actions/core';
 import { exec, ExecOptions } from '@actions/exec';
-//import io from '@actions/io';
 import fs from 'fs';
 import path from 'path';
 import { createStatusCheck } from './github';
@@ -92,15 +91,7 @@ async function writeFile(
   error: string
 ): Promise<void> {
   const io = require('@actions/io');
-
-  console.log('BEFORE THE MKDIRP CALL');
-  console.log(io);
-
-  //throw new Error(`THIS IS LOGGING: ${directory}`);
   await io.mkdirP(directory);
-
-  console.log('AFTER THE MKDIRP CALL')
-
   await fs.promises.writeFile(path.join(directory, 'std.out'), output);
   await fs.promises.writeFile(path.join(directory, 'std.err'), error);
 }
