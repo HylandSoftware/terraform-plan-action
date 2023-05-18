@@ -94,7 +94,7 @@ async function writeFile(
   console.log(directory);
   console.log(io);
   throw new Error(`THIS IS LOGGING: ${directory}`);
-  await io.mkdirP(directory);
+  //await io.mkdirP(directory);
   await fs.promises.writeFile(path.join(directory, 'std.out'), output);
   await fs.promises.writeFile(path.join(directory, 'std.err'), error);
 }
