@@ -45,13 +45,11 @@ async function run(): Promise<void> {
 
     core.debug(`Starting terraform plan at ${new Date().toTimeString()}`);
 
-    // const exitCode = await exec(
-    //   'terraform',
-    //   ['plan', '-no-color', '-input=false'].concat(terraformArgs),
-    //   options
-    // );
-
-    const exitCode: number = 5;
+    const exitCode = await exec(
+      'terraform',
+      ['plan', '-no-color', '-input=false'].concat(terraformArgs),
+      options
+    );
 
     const output = writeBufferToString(stdOut);
     const error = writeBufferToString(stdErr);
@@ -79,11 +77,12 @@ async function run(): Promise<void> {
       core.setFailed(`Terraform exited with code ${exitCode}.`);
     }
   } catch (error) {
-    if (error instanceof Error) {
-      core.setFailed(error.message);
-    } else {
-      core.setFailed(`Action failed with error ${error}`);
-    }
+    console.log("bleh");
+    // if (error instanceof Error) {
+    //   core.setFailed(error.message);
+    // } else {
+    //   core.setFailed(`Action failed with error ${error}`);
+    // }
   }
 }
 
