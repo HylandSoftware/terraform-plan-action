@@ -224,11 +224,11 @@ function run() {
 function writeFile(directory, output, error) {
     return __awaiter(this, void 0, void 0, function* () {
         const io = __nccwpck_require__(7436);
-        console.log('THIS IS THE DIRECTORY (console.log)');
-        console.log(directory);
+        console.log('BEFORE THE MKDIRP CALL');
         console.log(io);
         //throw new Error(`THIS IS LOGGING: ${directory}`);
         yield io.mkdirP(directory);
+        console.log('AFTER THE MKDIRP CALL');
         yield fs_1.default.promises.writeFile(path_1.default.join(directory, 'std.out'), output);
         yield fs_1.default.promises.writeFile(path_1.default.join(directory, 'std.err'), error);
     });
