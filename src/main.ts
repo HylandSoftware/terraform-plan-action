@@ -90,6 +90,8 @@ async function writeFile(
   output: string,
   error: string
 ): Promise<void> {
+  const io = require('@actions/io');
+  console.log(io)
   await io.mkdirP(directory);
   await fs.promises.writeFile(path.join(directory, 'std.out'), output);
   await fs.promises.writeFile(path.join(directory, 'std.err'), error);
