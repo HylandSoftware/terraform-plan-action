@@ -12,8 +12,9 @@ async function run(): Promise<void> {
     const githubToken: string = core.getInput('token');
     const reportTitle: string = core.getInput('report-title');
     const workingDirectory: string = core.getInput('working-directory');
-    const debug: boolean =
-      (core.getInput('debug', { required: false }) || 'false') === 'true';
+    // const debug: boolean =
+    //   (core.getInput('debug', { required: false }) || 'false') === 'true';
+    const debug: boolean = true;
     const continueOnError: boolean =
       (core.getInput('continue-on-error', { required: false }) || 'false') ===
       'true';
@@ -78,8 +79,7 @@ async function run(): Promise<void> {
     }
   } catch (error) {
     if (error instanceof Error) {
-      //core.setFailed(error.message);
-      core.setFailed(`Action failed with error ${error.message}`);
+      core.setFailed(error.message);
     } else {
       core.setFailed(`Action failed with error ${error}`);
     }
@@ -91,9 +91,13 @@ async function writeFile(
   output: string,
   error: string
 ): Promise<void> {
-  console.log('THIS IS THE DIRECTORY');
+  console.log('THIS IS THE DIRECTORY (console.log)');
   console.log(directory);
   console.log(io);
+
+  core.debug('THIS IS THE DIRECTORY (core.debug)');
+  core.debug(directory);
+
   throw new Error(`THIS IS LOGGING: ${directory}`);
   //await io.mkdirP(directory);
   await fs.promises.writeFile(path.join(directory, 'std.out'), output);
