@@ -70,7 +70,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           working-directory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
           report-title: Single Argument Run Second Job
-          save-directory: ./super-duper-artifacts
+          save-directory: ./artifacts
       
       - uses: actions/upload-artifact@v3
         with:
