@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import { exec, ExecOptions } from '@actions/exec';
-import io from '@actions/io';
+//import io from '@actions/io';
 import fs from 'fs';
 import path from 'path';
 import { createStatusCheck } from './github';
@@ -91,15 +91,14 @@ async function writeFile(
   output: string,
   error: string
 ): Promise<void> {
+  const io = require('@actions/io');
+
   console.log('THIS IS THE DIRECTORY (console.log)');
   console.log(directory);
   console.log(io);
 
-  core.debug('THIS IS THE DIRECTORY (core.debug)');
-  core.debug(directory);
-
-  throw new Error(`THIS IS LOGGING: ${directory}`);
-  //await io.mkdirP(directory);
+  //throw new Error(`THIS IS LOGGING: ${directory}`);
+  await io.mkdirP(directory);
   await fs.promises.writeFile(path.join(directory, 'std.out'), output);
   await fs.promises.writeFile(path.join(directory, 'std.err'), error);
 }
