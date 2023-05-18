@@ -45,11 +45,13 @@ async function run(): Promise<void> {
 
     core.debug(`Starting terraform plan at ${new Date().toTimeString()}`);
 
-    const exitCode = await exec(
-      'terraform',
-      ['plan', '-no-color', '-input=false'].concat(terraformArgs),
-      options
-    );
+    // const exitCode = await exec(
+    //   'terraform',
+    //   ['plan', '-no-color', '-input=false'].concat(terraformArgs),
+    //   options
+    // );
+
+    const exitCode: number = 5;
 
     const output = writeBufferToString(stdOut);
     const error = writeBufferToString(stdErr);
