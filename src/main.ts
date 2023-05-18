@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import { exec, ExecOptions } from '@actions/exec';
-import io from '@actions/io';
+//import io from '@actions/io';
 import fs from 'fs';
 import path from 'path';
 import { createStatusCheck } from './github';
@@ -91,7 +91,7 @@ async function writeFile(
   output: string,
   error: string
 ): Promise<void> {
-  //const io = require('@actions/io');
+  const io = require('@actions/io');
 
   console.log('BEFORE THE MKDIRP CALL');
   console.log(io);
