@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import { exec, ExecOptions } from '@actions/exec';
+import io from '@actions/io';
 import fs from 'fs';
 import path from 'path';
 import { createStatusCheck } from './github';
@@ -89,8 +90,10 @@ async function writeFile(
   output: string,
   error: string
 ): Promise<void> {
-  const io = require('@actions/io');
+  //const io = require('@actions/io');
+  console.log("BEFORE THE mkdirP")
   await io.mkdirP(directory);
+  console.log("AFTER THE mkdirP")
   await fs.promises.writeFile(path.join(directory, 'std.out'), output);
   await fs.promises.writeFile(path.join(directory, 'std.err'), error);
 }
