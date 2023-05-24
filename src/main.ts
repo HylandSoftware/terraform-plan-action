@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import { exec, ExecOptions } from '@actions/exec';
-import io from '@actions/io';
+import * as io from '@actions/io';
 import fs from 'fs';
 import path from 'path';
 import { createStatusCheck } from './github';
@@ -77,7 +77,11 @@ async function run(): Promise<void> {
       core.setFailed(`Terraform exited with code ${exitCode}.`);
     }
   } catch (error) {
-    core.setFailed(error.message);
+    if (error instanceof Error) {
+      core.setFailed(error.message);
+    } else {
+      core.setFailed(`Action failed with error ${error}`);
+    }
   }
 }
 
