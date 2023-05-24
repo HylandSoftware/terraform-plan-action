@@ -1,3 +1,16 @@
+# [2.0.0](https://github.com/HylandSoftware/terraform-plan-action/compare/v1.1.8...v2.0.0) (2023-05-24)
+
+
+### Features
+
+* update all the packages to latest, node16 action ([#407](https://github.com/HylandSoftware/terraform-plan-action/issues/407)) ([7a5e8b9](https://github.com/HylandSoftware/terraform-plan-action/commit/7a5e8b9fcdb14dd3cec6d2838f4a8e134647c76a))
+
+
+### BREAKING CHANGES
+
+* Allow teams to upgrade to major version change on runtime
+as they see fit
+
 ## [1.1.8](https://github.com/HylandSoftware/terraform-plan-action/compare/v1.1.7...v1.1.8) (2021-03-08)
 
 
