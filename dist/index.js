@@ -150,7 +150,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const exec_1 = __nccwpck_require__(1514);
-const io_1 = __importDefault(__nccwpck_require__(7436));
+const io = __importStar(__nccwpck_require__(7436));
 const fs_1 = __importDefault(__nccwpck_require__(7147));
 const path_1 = __importDefault(__nccwpck_require__(1017));
 const github_1 = __nccwpck_require__(5928);
@@ -221,7 +221,7 @@ function run() {
 }
 function writeFile(directory, output, error) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield io_1.default.mkdirP(directory);
+        yield io.mkdirP(directory);
         yield fs_1.default.promises.writeFile(path_1.default.join(directory, 'std.out'), output);
         yield fs_1.default.promises.writeFile(path_1.default.join(directory, 'std.err'), error);
     });
